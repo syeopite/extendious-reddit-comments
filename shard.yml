@@ -1,0 +1,13 @@
+name: extendious-reddit-comments
+version: 0.1.0
+
+authors:
+  - syeopite <syeopite@syeopite.dev>
+
+dependencies:
+  inv-ext-utils:
+    path: "../inv-ext-utils"
+
+crystal: '>= 1.14.0'
+
+license: MIT
