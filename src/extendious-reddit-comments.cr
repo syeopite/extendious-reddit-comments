@@ -21,6 +21,11 @@ module RedditCommentsExt
 
     def self.add_routes
       extinv_before_get "/api/v1/comments/:id", Routing, :before_comments_api
+
+      # Due to Kemal's weird middleware orders and the lack of ability for Kemal to
+      # modify responses, injecting reddit comments into the html is an impossibility
+
+      # extinv_after_get "/watch", Routing, :watch_page_no_js_reddit_comments
     end
 
     def self.before_comments_api(env)
@@ -62,5 +67,30 @@ module RedditCommentsExt
         haltf env, 200, response.to_json
       end
     end
+
+    # def self.watch_page_no_js_reddit_comments(env)
+    #   puts "After watch handler here!"
+
+    #   id = env.params.query["v"]?
+
+    #   preferences = env.get("preferences").as(Preferences)
+    #   source = preferences.comments[0]
+    #   if source.empty?
+    #     source = preferences.comments[1]
+    #   end
+
+    #   return if source != "reddit"
+
+    #   begin
+    #     comments, reddit_thread = RedditCommentsExt.fetch_reddit(id)
+    #     comment_html = RedditCommentsExt.template_reddit(comments)
+
+    #     comment_html = RedditCommentsExt.fill_links(comment_html, "https", "www.reddit.com")
+    #   rescue ex
+    #     return
+    #   end
+
+    #   return nil
+    # end
   end
 end
