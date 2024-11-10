@@ -6,7 +6,7 @@ authors:
 
 dependencies:
   inv-ext-utils:
-    path: "../inv-ext-utils"
+    github: syeopite/inv-ext-utils
 
 crystal: '>= 1.14.0'
 
